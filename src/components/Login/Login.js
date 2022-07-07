@@ -46,9 +46,6 @@ const Login = (props) => {
     isValid: null,
   });
 
-  const { isValid: emailIsValid } = emailState;
-  const { isValid: passwordIsValid } = passwordState;
-
   // useEffect(() => {
   //   console.log("effect running");
 
@@ -59,12 +56,15 @@ const Login = (props) => {
   // [] 주입하지 않으면 모든 컴포넌트 렌더링 후 실행됨(state가 변경될시 매번)
   // 빈 의존성[] 선언 시 처음 렌더링 후 실행되지 않는다
 
+  const { isValid: emailIsValid } = emailState; // emailIsValid >> 별칭 할당!
+  const { isValid: passwordIsValid } = passwordState; // // passwordIsValid >> 별칭 할당!
+
   useEffect(() => {
     const identifier = setTimeout(() => {
       console.log("checking");
       setFormIsValid(
         // 모든 키 입력에 대해 한번만 실행됨!
-        emailState.isValid && passwordState.isValid
+        emailIsValid && passwordIsValid
       );
     }, 500);
 
